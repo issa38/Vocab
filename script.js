@@ -135,7 +135,7 @@ function generateFillQuestions() {
     
     // Create label with the definition prompt.
     const label = document.createElement("label");
-    label.textContent = `Question ${index + 1}: Fill in the blank for the definition: "${item.definition}"`;
+    label.textContent = `Fill in the blank for the definition: \n "${item.definition}"`;
     label.setAttribute("for", `fib_${index}`);
     
     // Create input field.
@@ -177,7 +177,7 @@ function generateTFQuestions() {
     tfAnswers.push(isTrueStatement);
     
     const label = document.createElement("label");
-    label.textContent = `Question ${index + 1}: True or False – The word "${item.word}" means "${displayedDefinition}"?`;
+    label.textContent = `True or False – The word "${item.word}" means \n "${displayedDefinition}"?`;
     
     // Create radio buttons.
     const optionsDiv = document.createElement("div");
@@ -310,6 +310,29 @@ function resetTest() {
 }
 
 // -------------------------
+// Dark Mode Toggle Functionality
+// -------------------------
+
+function initializeDarkMode() {
+  const darkModeToggle = document.getElementById("dark-mode-toggle");
+  
+  // Check localStorage for a saved preference.
+  if (localStorage.getItem("darkMode") === "enabled") {
+    document.body.classList.add("dark-mode");
+  }
+  
+  darkModeToggle.addEventListener("click", function() {
+    document.body.classList.toggle("dark-mode");
+    // Save preference.
+    if (document.body.classList.contains("dark-mode")) {
+      localStorage.setItem("darkMode", "enabled");
+    } else {
+      localStorage.setItem("darkMode", "disabled");
+    }
+  });
+}
+
+// -------------------------
 // Initialize Page
 // -------------------------
 function initializeTest() {
@@ -317,6 +340,7 @@ function initializeTest() {
   generateFillQuestions();
   generateTFQuestions();
   generateMatchingQuestions();
+  initializeDarkMode();
 }
 
 // Attach event listeners.
