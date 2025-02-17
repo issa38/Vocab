@@ -49,6 +49,32 @@ main {
   margin: 0 auto;
 }
 
+/* Word Key Styles */
+#word-key {
+  margin-bottom: 20px;
+}
+
+#word-key-list {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#word-key-list li {
+  margin: 5px 10px;
+  padding: 5px 10px;
+  background: #eee;
+  border-radius: 4px;
+  transition: text-decoration 0.3s;
+}
+
+/* When a word is used in an answer, cross it off */
+#word-key-list li.crossed-off {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
 /* Question Styles */
 section {
   margin-bottom: 40px;
@@ -60,6 +86,7 @@ section {
   background: #fff;
   border: 1px solid #ddd;
   border-radius: 4px;
+  transition: background-color 0.3s, border 0.3s;
 }
 
 .question label {
@@ -136,6 +163,12 @@ button {
   font-weight: bold;
 }
 
+/* Incorrect Answer Highlight */
+.incorrect {
+  border: 2px solid red;
+  background-color: #ffe6e6;
+}
+
 /* Dark Mode Styles */
 .dark-mode {
   background-color: #121212;
@@ -181,28 +214,39 @@ button {
 @media (max-width: 600px) {
   body {
     padding: 10px;
+    font-size: 18px;
   }
   
   header h1 {
-    font-size: 2em;
+    font-size: 1.8em;
+  }
+  
+  #date-info {
+    font-size: 1em;
   }
   
   .question {
     padding: 10px;
+    font-size: 1em;
   }
   
-  .matching-row {
+  #word-key-list {
     flex-direction: column;
-    align-items: flex-start;
   }
   
-  .matching-row span {
-    width: 100%;
-    margin-bottom: 5px;
+  #word-key-list li {
+    margin: 5px 0;
+    font-size: 1.2em;
   }
   
   button {
     width: 100%;
     margin: 5px 0;
+    font-size: 1.2em;
+  }
+  
+  input[type="text"], select {
+    font-size: 1.2em;
+    padding: 10px;
   }
 }

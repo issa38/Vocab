@@ -1,7 +1,6 @@
 // -------------------------
 // Vocabulary Data
 // -------------------------
-// Sample vocabulary array; feel free to expand this list or load your own data.
 const vocabulary = [
   { word: "aberration", definition: "a departure from what is normal, usual, or expected" },
   { word: "cacophony", definition: "a harsh, discordant mixture of sounds" },
@@ -32,12 +31,12 @@ const vocabulary = [
 ];
 
 // -------------------------
-// Global Variables for Answers
+// Global Variables
 // -------------------------
 let weeklyWords = [];  // Array of 10 words for the week.
-const fillAnswers = [];  // Expected answers for fill-in-the-blank (word in lowercase).
-const tfAnswers = [];    // Boolean: true if statement is correct, false otherwise.
-const matchAnswers = []; // Expected definitions for matching section.
+const fillAnswers = [];  // Expected answers for fill-in-the-blank.
+const tfAnswers = [];    // Correct Boolean values for true/false questions.
+const matchAnswers = []; // Expected definitions for matching questions.
 
 // -------------------------
 // Utility Functions
@@ -45,27 +44,21 @@ const matchAnswers = []; // Expected definitions for matching section.
 
 // Returns ISO week number and year for a given date.
 function getWeekNumber(date) {
-  // Copy date so don't modify original
   const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
-  // Set to nearest Thursday: current date + 4 - current day number (Monday is 1, Sunday is 7)
   const dayNum = d.getUTCDay() || 7;
   d.setUTCDate(d.getUTCDate() + 4 - dayNum);
-  // Year is the year of the Thursday
   const year = d.getUTCFullYear();
-  // Get first day of year
-  const firstDay = new Date(Date.UTC(year,0,1));
-  // Calculate full weeks to nearest Thursday
+  const firstDay = new Date(Date.UTC(year, 0, 1));
   const weekNum = Math.ceil((((d - firstDay) / 86400000) + 1) / 7);
   return { year, week: weekNum };
 }
 
-// Shuffle an array (Fisher-Yates)
+// Shuffle an array using Fisher-Yates.
 function shuffleArray(array) {
   let currentIndex = array.length, randomIndex;
   while (currentIndex !== 0) {
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex--;
-    // Swap
     [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
   }
   return array;
@@ -74,7 +67,6 @@ function shuffleArray(array) {
 // -------------------------
 // Weekly Vocabulary Selection
 // -------------------------
-
 function loadWeeklyWords() {
   const now = new Date();
   const { year, week } = getWeekNumber(now);
@@ -82,21 +74,17 @@ function loadWeeklyWords() {
   
   const weekKey = `weeklyVocab_${year}_${week}`;
   let history = JSON.parse(localStorage.getItem("vocabHistory") || "{}");
-
-  // If we already have a list for this week, use it.
+  
   if (localStorage.getItem(weekKey)) {
     weeklyWords = JSON.parse(localStorage.getItem(weekKey));
   } else {
-    // Gather words used in the past 4 weeks.
     const usedWords = new Set();
     for (let i = 1; i <= 4; i++) {
-      // Calculate previous week (this is a simple approximation)
       let prevWeek = week - i;
       let prevYear = year;
       if (prevWeek < 1) {
         prevYear -= 1;
-        // Approximate last week number (could be 52 or 53)
-        prevWeek = 52;
+        prevWeek = 52; // Approximation
       }
       const key = `weeklyVocab_${prevYear}_${prevWeek}`;
       if (localStorage.getItem(key)) {
@@ -104,46 +92,74 @@ function loadWeeklyWords() {
         words.forEach(item => usedWords.add(item.word));
       }
     }
-    // Filter vocabulary to exclude words used recently.
     const availableWords = vocabulary.filter(item => !usedWords.has(item.word));
-    // If not enough words are available, fallback to entire list.
     const sourcePool = availableWords.length >= 10 ? availableWords : vocabulary;
-    // Shuffle and take 10 random words.
     weeklyWords = shuffleArray([...sourcePool]).slice(0, 10);
-    
-    // Save for current week.
     localStorage.setItem(weekKey, JSON.stringify(weeklyWords));
-    // Update history (optional – you can view all past weeks if needed).
     history[weekKey] = weeklyWords;
     localStorage.setItem("vocabHistory", JSON.stringify(history));
   }
 }
 
 // -------------------------
+// Word Key Section
+// -------------------------
+function generateWordKey() {
+  const keyList = document.getElementById("word-key-list");
+  keyList.innerHTML = "";
+  weeklyWords.forEach(item => {
+    const li = document.createElement("li");
+    li.textContent = item.word;
+    li.dataset.word = item.word.toLowerCase();
+    keyList.appendChild(li);
+  });
+}
+
+// Update the word key: if any fill-in answer matches a word from the key, cross it off.
+function updateWordKeyCrossOff() {
+  const keyItems = document.querySelectorAll("#word-key-list li");
+  const inputs = document.querySelectorAll("#fill-questions input[type='text']");
+  let usedWords = new Set();
+  inputs.forEach(input => {
+    const val = input.value.trim().toLowerCase();
+    if(val) {
+      usedWords.add(val);
+    }
+  });
+  keyItems.forEach(li => {
+    if (usedWords.has(li.dataset.word)) {
+      li.classList.add("crossed-off");
+    } else {
+      li.classList.remove("crossed-off");
+    }
+  });
+}
+
+// -------------------------
 // Generate Question Sections
 // -------------------------
 
+// Fill-in-the-Blank Questions
 function generateFillQuestions() {
   const fillContainer = document.getElementById("fill-questions");
   fillContainer.innerHTML = "";
-  fillAnswers.length = 0; // Reset
+  fillAnswers.length = 0;
   
   weeklyWords.forEach((item, index) => {
-    // Create a container div for the question.
     const qDiv = document.createElement("div");
     qDiv.classList.add("question");
     
-    // Create label with the definition prompt.
     const label = document.createElement("label");
-    label.textContent = `Fill in the blank for the definition: \n "${item.definition}"`;
+    label.textContent = `Question ${index + 1}: Fill in the blank for the definition: "${item.definition}"`;
     label.setAttribute("for", `fib_${index}`);
     
-    // Create input field.
     const input = document.createElement("input");
     input.type = "text";
     input.id = `fib_${index}`;
     
-    // Save the correct answer (in lowercase for comparison).
+    // Update word key on every input change.
+    input.addEventListener("input", updateWordKeyCrossOff);
+    
     fillAnswers.push(item.word.toLowerCase());
     
     qDiv.appendChild(label);
@@ -152,6 +168,7 @@ function generateFillQuestions() {
   });
 }
 
+// True/False Questions
 function generateTFQuestions() {
   const tfContainer = document.getElementById("tf-questions");
   tfContainer.innerHTML = "";
@@ -161,11 +178,9 @@ function generateTFQuestions() {
     const qDiv = document.createElement("div");
     qDiv.classList.add("question");
     
-    // Decide randomly if this statement will be correct or not.
     const isTrueStatement = Math.random() < 0.5;
     let displayedDefinition = item.definition;
     if (!isTrueStatement) {
-      // Pick a random wrong definition from another word.
       let other;
       do {
         other = vocabulary[Math.floor(Math.random() * vocabulary.length)];
@@ -173,13 +188,11 @@ function generateTFQuestions() {
       displayedDefinition = other.definition;
     }
     
-    // Save the correct answer (true if the statement is exactly the word's definition)
     tfAnswers.push(isTrueStatement);
     
     const label = document.createElement("label");
-    label.textContent = `True or False – The word "${item.word}" means \n "${displayedDefinition}"?`;
+    label.textContent = `Question ${index + 1}: True or False – The word "${item.word}" means "${displayedDefinition}"?`;
     
-    // Create radio buttons.
     const optionsDiv = document.createElement("div");
     optionsDiv.classList.add("tf-options");
     
@@ -198,27 +211,24 @@ function generateTFQuestions() {
   });
 }
 
+// Matching Questions
 function generateMatchingQuestions() {
   const matchContainer = document.getElementById("matching-questions");
   matchContainer.innerHTML = "";
   matchAnswers.length = 0;
   
-  // For matching, we use the 10 words and shuffle their definitions.
   const definitions = weeklyWords.map(item => item.definition);
   const shuffledDefs = shuffleArray([...definitions]);
   
   weeklyWords.forEach((item, index) => {
     const rowDiv = document.createElement("div");
-    rowDiv.classList.add("matching-row");
+    rowDiv.classList.add("matching-row", "question");
     
-    // Display the word.
     const wordSpan = document.createElement("span");
     wordSpan.textContent = item.word;
     
-    // Create dropdown for definitions.
     const select = document.createElement("select");
     select.id = `match_${index}`;
-    // Default option.
     const defaultOption = document.createElement("option");
     defaultOption.value = "";
     defaultOption.textContent = "Select definition";
@@ -231,7 +241,6 @@ function generateMatchingQuestions() {
       select.appendChild(option);
     });
     
-    // Save the correct definition.
     matchAnswers.push(item.definition);
     
     rowDiv.appendChild(wordSpan);
@@ -241,89 +250,125 @@ function generateMatchingQuestions() {
 }
 
 // -------------------------
-// Check Answers & Reset
+// Show Only One Random Test Section
 // -------------------------
+function showRandomTestSection() {
+  const sections = ["fill-in-the-blank", "true-false", "matching"];
+  const chosen = sections[Math.floor(Math.random() * sections.length)];
+  sections.forEach(sectionId => {
+    document.getElementById(sectionId).style.display = (sectionId === chosen) ? "block" : "none";
+  });
+}
 
+// -------------------------
+// Check Answers & Mark Incorrect Responses
+// -------------------------
 function checkAnswers() {
   let totalQuestions = fillAnswers.length + tfAnswers.length + matchAnswers.length;
   let correctCount = 0;
-  let feedback = "";
   
-  // Check fill-in-the-blank answers.
+  // Check Fill-in-the-Blank
   weeklyWords.forEach((item, index) => {
-    const userAnswer = document.getElementById(`fib_${index}`).value.trim().toLowerCase();
-    if (userAnswer === fillAnswers[index]) {
-      correctCount++;
+    const input = document.getElementById(`fib_${index}`);
+    if (input) {
+      const userAnswer = input.value.trim().toLowerCase();
+      const qDiv = input.parentElement;
+      if (userAnswer === fillAnswers[index]) {
+        correctCount++;
+        qDiv.classList.remove("incorrect");
+      } else {
+        qDiv.classList.add("incorrect");
+      }
     }
   });
   
-  // Check true/false answers.
+  // Check True/False
   weeklyWords.forEach((item, index) => {
     const radios = document.getElementsByName(`tf_${index}`);
     let selected;
-    for (let radio of radios) {
+    let qDiv = null;
+    radios.forEach(radio => {
+      if (!qDiv) qDiv = radio.closest(".question");
       if (radio.checked) {
         selected = radio.value;
-        break;
       }
-    }
-    // Compare as boolean.
-    if ((selected === "true" && tfAnswers[index] === true) ||
-        (selected === "false" && tfAnswers[index] === false)) {
-      correctCount++;
+    });
+    if (selected !== undefined) {
+      if ((selected === "true" && tfAnswers[index] === true) ||
+          (selected === "false" && tfAnswers[index] === false)) {
+        correctCount++;
+        if(qDiv) qDiv.classList.remove("incorrect");
+      } else {
+        if(qDiv) qDiv.classList.add("incorrect");
+      }
+    } else {
+      if(qDiv) qDiv.classList.add("incorrect");
     }
   });
   
-  // Check matching answers.
+  // Check Matching
   weeklyWords.forEach((item, index) => {
     const select = document.getElementById(`match_${index}`);
-    if (select.value === matchAnswers[index]) {
-      correctCount++;
+    if (select) {
+      const qDiv = select.parentElement;
+      if (select.value === matchAnswers[index]) {
+        correctCount++;
+        qDiv.classList.remove("incorrect");
+      } else {
+        qDiv.classList.add("incorrect");
+      }
     }
   });
   
-  feedback = `You got ${correctCount} out of ${totalQuestions} correct.`;
-  document.getElementById("result").textContent = feedback;
+  document.getElementById("result").textContent = `You got ${correctCount} out of ${totalQuestions} correct.`;
 }
 
+// -------------------------
+// Reset Test (Clears Answers and Visual Cues)
+// -------------------------
 function resetTest() {
-  // Reset fill-in answers.
-  weeklyWords.forEach((item, index) => {
-    const fib = document.getElementById(`fib_${index}`);
-    if (fib) fib.value = "";
+  // Reset Fill-in-the-Blank inputs.
+  const fillInputs = document.querySelectorAll("#fill-questions input[type='text']");
+  fillInputs.forEach(input => {
+    input.value = "";
+    input.parentElement.classList.remove("incorrect");
   });
   
-  // Reset true/false radio buttons.
+  // Reset True/False radio buttons.
   weeklyWords.forEach((item, index) => {
     const radios = document.getElementsByName(`tf_${index}`);
     radios.forEach(radio => radio.checked = false);
+    if (radios.length > 0) {
+      const qDiv = radios[0].closest(".question");
+      if (qDiv) qDiv.classList.remove("incorrect");
+    }
   });
   
-  // Reset matching selections.
+  // Reset Matching selections.
   weeklyWords.forEach((item, index) => {
     const select = document.getElementById(`match_${index}`);
-    if (select) select.selectedIndex = 0;
+    if (select) {
+      select.selectedIndex = 0;
+      select.parentElement.classList.remove("incorrect");
+    }
   });
   
-  // Clear feedback.
   document.getElementById("result").textContent = "";
+  updateWordKeyCrossOff();
 }
 
 // -------------------------
 // Dark Mode Toggle Functionality
 // -------------------------
-
 function initializeDarkMode() {
   const darkModeToggle = document.getElementById("dark-mode-toggle");
   
-  // Check localStorage for a saved preference.
   if (localStorage.getItem("darkMode") === "enabled") {
     document.body.classList.add("dark-mode");
   }
   
   darkModeToggle.addEventListener("click", function() {
     document.body.classList.toggle("dark-mode");
-    // Save preference.
     if (document.body.classList.contains("dark-mode")) {
       localStorage.setItem("darkMode", "enabled");
     } else {
@@ -337,15 +382,15 @@ function initializeDarkMode() {
 // -------------------------
 function initializeTest() {
   loadWeeklyWords();
+  generateWordKey();
   generateFillQuestions();
   generateTFQuestions();
   generateMatchingQuestions();
+  showRandomTestSection();
   initializeDarkMode();
 }
 
-// Attach event listeners.
 document.getElementById("submit-btn").addEventListener("click", checkAnswers);
 document.getElementById("reset-btn").addEventListener("click", resetTest);
 
-// Initialize the test on page load.
 initializeTest();
