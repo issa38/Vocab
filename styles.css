@@ -59,6 +59,7 @@ main {
   padding: 0;
   display: flex;
   flex-wrap: wrap;
+  color: red;
 }
 
 #word-key-list li {

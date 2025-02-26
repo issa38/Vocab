@@ -27,7 +27,886 @@ const vocabulary = [
   { word: "xenophobia", definition: "dislike of or prejudice against people from other countries" },
   { word: "yoke", definition: "to join together; to harness" },
   { word: "zealous", definition: "having or showing zeal" },
-  // Add more words as needed...
+    {
+        word: "accommodation",
+        definition: "making or becoming suitable; adjusting to circumstances"
+    },
+    {
+        word: "adamant",
+        definition: "very hard native crystalline carbon valued as a gem"
+    },
+    {
+        word: "addendum",
+        definition: "textual matter that is appended to the end of a publication"
+    },
+    {
+        word: "adhere",
+        definition: "stick to firmly"
+    },
+    {
+        word: "adherent",
+        definition: "someone who believes and helps to spread a doctrine"
+    },
+    {
+        word: "adversity",
+        definition: "a state of misfortune or affliction"
+    },
+    {
+        word: "advice",
+        definition: "a proposal for an appropriate course of action"
+    },
+    {
+        word: "advise",
+        definition: "give advice to"
+    },
+    {
+        word: "advocate",
+        definition: "a person who pleads for a person, cause, or idea"
+    },
+    {
+        word: "affect",
+        definition: "have an influence upon"
+    },
+    {
+        word: "affirm",
+        definition: "declare solemnly and formally as true"
+    },
+    {
+        word: "ambiguous",
+        definition: "having more than one possible meaning"
+    },
+    {
+        word: "amicable",
+        definition: "characterized by friendship and good will"
+    },
+    {
+        word: "anecdote",
+        definition: "short account of an incident"
+    },
+    {
+        word: "annotation",
+        definition: "the act of adding notes"
+    },
+    {
+        word: "anomaly",
+        definition: "deviation from the normal or common order, form, or rule"
+    },
+    {
+        word: "antagonism",
+        definition: "an actively expressed feeling of dislike and hostility"
+    },
+    {
+        word: "array",
+        definition: "an impressive display or assortment"
+    },
+    {
+        word: "ascertain",
+        definition: "learn or discover with confidence"
+    },
+    {
+        word: "assiduous",
+        definition: "marked by care and persistent effort"
+    },
+    {
+        word: "assimilate",
+        definition: "make alike"
+    },
+    {
+        word: "assure",
+        definition: "inform positively and with certainty and confidence"
+    },
+    {
+        word: "autonomy",
+        definition: "political independence"
+    },
+    {
+        word: "candor",
+        definition: "the quality of being honest and straightforward"
+    },
+    {
+        word: "causation",
+        definition: "the act of making something happen"
+    },
+    {
+        word: "cerebral",
+        definition: "of or relating to the brain"
+    },
+    {
+        word: "chastise",
+        definition: "scold or criticize severely"
+    },
+    {
+        word: "citation",
+        definition: "an official award usually given as formal public statement"
+    },
+    {
+        word: "cite",
+        definition: "make reference to"
+    },
+    {
+        word: "codify",
+        definition: "organize into a system, such as a body of law"
+    },
+    {
+        word: "cognizant",
+        definition: "having or showing knowledge or understanding or realization"
+    },
+    {
+        word: "coherent",
+        definition: "marked by an orderly and consistent relation of parts"
+    },
+    {
+        word: "complementary",
+        definition: "serving to fill out, enhance, or supply what is lacking"
+    },
+    {
+        word: "compliance",
+        definition: "the act of submitting, usually surrendering power to another"
+    },
+    {
+        word: "conceive",
+        definition: "have the idea for"
+    },
+    {
+        word: "conceptualise",
+        definition: "have the idea for"
+    },
+    {
+        word: "condense",
+        definition: "cause a gas or vapor to change into a liquid"
+    },
+    {
+        word: "confirm",
+        definition: "strengthen"
+    },
+    {
+        word: "conjecture",
+        definition: "believe especially on uncertain or tentative grounds"
+    },
+    {
+        word: "connotation",
+        definition: "an idea that is implied or suggested"
+    },
+    {
+        word: "conscientious",
+        definition: "characterized by extreme care and great effort"
+    },
+    {
+        word: "conscious",
+        definition: "having awareness of surroundings and sensations and thoughts"
+    },
+    {
+        word: "consciousness",
+        definition: "an alert cognitive state in which you are aware of yourself"
+    },
+    {
+        word: "consecutive",
+        definition: "one after the other"
+    },
+    {
+        word: "constituted",
+        definition: "brought about or set up or accepted"
+    },
+    {
+        word: "constraint",
+        definition: "the state of being physically limited"
+    },
+    {
+        word: "contend",
+        definition: "compete for something"
+    },
+    {
+        word: "context",
+        definition: "the set of facts or circumstances that surround a situation"
+    },
+    {
+        word: "continual",
+        definition: "occurring without interruption"
+    },
+    {
+        word: "continuous",
+        definition: "moving in time or space without interruption"
+    },
+    {
+        word: "contraindicate",
+        definition: "suggest that something (e.g., a treatment) is inadvisable"
+    },
+    {
+        word: "conventional",
+        definition: "following accepted customs and proprieties"
+    },
+    {
+        word: "correlation",
+        definition: "a reciprocal connection between two or more things"
+    },
+    {
+        word: "corroborate",
+        definition: "give evidence for"
+    },
+    {
+        word: "covert",
+        definition: "secret or hidden"
+    },
+    {
+        word: "credible",
+        definition: "capable of being believed"
+    },
+    {
+        word: "credulous",
+        definition: "showing a lack of judgment or experience"
+    },
+    {
+        word: "cultivate",
+        definition: "adapt something wild to the environment"
+    },
+    {
+        word: "delegate",
+        definition: "a person appointed or elected to represent others"
+    },
+    {
+        word: "deliberate",
+        definition: "carefully thought out in advance"
+    },
+    {
+        word: "demographic",
+        definition: "a statistic characterizing human populations"
+    },
+    {
+        word: "dense",
+        definition: "having high compaction or concentration"
+    },
+    {
+        word: "derive",
+        definition: "come from"
+    },
+    {
+        word: "designate",
+        definition: "design or destine"
+    },
+    {
+        word: "determine",
+        definition: "find out or learn with certainty, as by making an inquiry"
+    },
+    {
+        word: "determinism",
+        definition: "(philosophy) a philosophical theory holding that all events are inevitable consequences of antecedent sufficient causes; often understood as denying the possibility of free will"
+    },
+    {
+        word: "diligent",
+        definition: "quietly and steadily persevering in detail or exactness"
+    },
+    {
+        word: "discretion",
+        definition: "power of making choices unconstrained by external agencies"
+    },
+    {
+        word: "disparage",
+        definition: "express a negative opinion of"
+    },
+    {
+        word: "disposition",
+        definition: "your usual mood"
+    },
+    {
+        word: "disproportionate",
+        definition: "out of proper balance"
+    },
+    {
+        word: "dogma",
+        definition: "a doctrine or code of beliefs accepted as authoritative"
+    },
+    {
+        word: "eclectic",
+        definition: "selecting what seems best of various styles or ideas"
+    },
+    {
+        word: "edification",
+        definition: "uplifting enlightenment"
+    },
+    {
+        word: "effect",
+        definition: "a phenomenon that is caused by some previous phenomenon"
+    },
+    {
+        word: "egalitarian",
+        definition: "favoring social equality"
+    },
+    {
+        word: "embed",
+        definition: "fix or set securely or deeply"
+    },
+    {
+        word: "emergence",
+        definition: "the act of coming out into view"
+    },
+    {
+        word: "empirical",
+        definition: "derived from experiment and observation rather than theory"
+    },
+    {
+        word: "emulate",
+        definition: "strive to equal or match, especially by imitating"
+    },
+    {
+        word: "enmity",
+        definition: "a state of deep-seated ill-will"
+    },
+    {
+        word: "ensconce",
+        definition: "fix firmly"
+    },
+    {
+        word: "ensure",
+        definition: "make certain of"
+    },
+    {
+        word: "entrenched",
+        definition: "dug in"
+    },
+    {
+        word: "epitome",
+        definition: "a standard or typical example"
+    },
+    {
+        word: "equivocal",
+        definition: "open to two or more interpretations"
+    },
+    {
+        word: "escalate",
+        definition: "increase in extent or intensity"
+    },
+    {
+        word: "espouse",
+        definition: "choose and follow a theory, idea, policy, etc."
+    },
+    {
+        word: "established",
+        definition: "brought about or set up or accepted"
+    },
+    {
+        word: "estranged",
+        definition: "caused to be unloved"
+    },
+    {
+        word: "ethos",
+        definition: "the distinctive spirit of a culture or an era"
+    },
+    {
+        word: "euphemism",
+        definition: "an inoffensive expression substituted for an offensive one"
+    },
+    {
+        word: "exclusive",
+        definition: "admitting or accepting only a particular group"
+    },
+    {
+        word: "exemplary",
+        definition: "worthy of imitation"
+    },
+    {
+        word: "exemplify",
+        definition: "be characteristic of"
+    },
+    {
+        word: "existential",
+        definition: "relating to or dealing with the state of being"
+    },
+    {
+        word: "experiential",
+        definition: "of or relating to direct observation or participation"
+    },
+    {
+        word: "explicate",
+        definition: "elaborate, as of theories and hypotheses"
+    },
+    {
+        word: "explicit",
+        definition: "precisely and clearly expressed or readily observable"
+    },
+    {
+        word: "extrapolation",
+        definition: "an inference about the future based on known facts"
+    },
+    {
+        word: "fallacy",
+        definition: "a misconception resulting from incorrect reasoning"
+    },
+    {
+        word: "figurative",
+        definition: "not literal"
+    },
+    {
+        word: "formal",
+        definition: "in accord with established conventions and requirements"
+    },
+    {
+        word: "formulate",
+        definition: "prepare according to instructions"
+    },
+    {
+        word: "fractious",
+        definition: "easily irritated or annoyed"
+    },
+    {
+        word: "heuristic",
+        definition: "a commonsense rule to help solve some problem"
+    },
+    {
+        word: "homogeneous",
+        definition: "all of the same or similar kind or nature"
+    },
+    {
+        word: "hypothesis",
+        definition: "a tentative insight that is not yet verified or tested"
+    },
+    {
+        word: "hypothetical",
+        definition: "a conjectural possibility or circumstance"
+    },
+    {
+        word: "illusive",
+        definition: "based on or having the nature of a fantasy"
+    },
+    {
+        word: "imminent",
+        definition: "close in time; about to occur"
+    },
+    {
+        word: "impartial",
+        definition: "free from undue bias or preconceived opinions"
+    },
+    {
+        word: "impede",
+        definition: "be a hindrance or obstacle to"
+    },
+    {
+        word: "impenetrable",
+        definition: "not admitting of passage into or through"
+    },
+    {
+        word: "imperil",
+        definition: "pose a threat to; present a danger to"
+    },
+    {
+        word: "implement",
+        definition: "a piece of equipment or a tool used for a specific purpose"
+    },
+    {
+        word: "implicit",
+        definition: "suggested though not directly expressed"
+    },
+    {
+        word: "incremental",
+        definition: "increasing gradually by regular degrees or additions"
+    },
+    {
+        word: "indicate",
+        definition: "designate a place, direction, person, or thing"
+    },
+    {
+        word: "inevitable",
+        definition: "incapable of being avoided or prevented"
+    },
+    {
+        word: "inference",
+        definition: "a conclusion you can draw based on known evidence"
+    },
+    {
+        word: "influence",
+        definition: "a power to affect persons or events"
+    },
+    {
+        word: "infuse",
+        definition: "fill, as with a certain quality"
+    },
+    {
+        word: "ingenuous",
+        definition: "lacking in sophistication or worldliness"
+    },
+    {
+        word: "ingrained",
+        definition: "deeply rooted; firmly fixed or held"
+    },
+    {
+        word: "inimical",
+        definition: "tending to obstruct or cause harm"
+    },
+    {
+        word: "initiative",
+        definition: "readiness to embark on bold new ventures"
+    },
+    {
+        word: "innate",
+        definition: "present at birth but not necessarily hereditary"
+    },
+    {
+        word: "innocuous",
+        definition: "not injurious to physical or mental health"
+    },
+    {
+        word: "innovation",
+        definition: "the act of starting something for the first time"
+    },
+    {
+        word: "inquisitive",
+        definition: "given to questioning"
+    },
+    {
+        word: "insidious",
+        definition: "working or spreading in a hidden and usually injurious way"
+    },
+    {
+        word: "instigate",
+        definition: "provoke or stir up"
+    },
+    {
+        word: "instinctive",
+        definition: "unthinking"
+    },
+    {
+        word: "insure",
+        definition: "protect by a contract of reimbursement in case of loss"
+    },
+    {
+        word: "intrinsic",
+        definition: "belonging to a thing by its very nature"
+    },
+    {
+        word: "invariably",
+        definition: "without change, in every case"
+    },
+    {
+        word: "lateral thinking",
+        definition: "a heuristic for solving problems"
+    },
+    {
+        word: "literal",
+        definition: "limited to the explicit meaning of a word or text"
+    },
+    {
+        word: "literate",
+        definition: "able to read and write"
+    },
+    {
+        word: "logical fallacy",
+        definition: "an error in reasoning that undermines an argument"
+    },
+    {
+        word: "mandate",
+        definition: "a formal statement of a command to do something"
+    },
+    {
+        word: "manifest",
+        definition: "clearly revealed to the mind or the senses or judgment"
+    },
+    {
+        word: "manifesto",
+        definition: "a public declaration of intentions"
+    },
+    {
+        word: "maven",
+        definition: "one who is very skilled in or knowledgeable about a field"
+    },
+    {
+        word: "mediocre",
+        definition: "moderate to inferior in quality"
+    },
+    {
+        word: "meme",
+        definition: "an amusing image that spreads rapidly through social media"
+    },
+    {
+        word: "menial",
+        definition: "relating to unskilled work, especially domestic work"
+    },
+    {
+        word: "mitigation",
+        definition: "the action of lessening in severity or intensity"
+    },
+    {
+        word: "naive",
+        definition: "marked by or showing unaffected simplicity"
+    },
+    {
+        word: "notation",
+        definition: "a comment or instruction (usually added)"
+    },
+    {
+        word: "nuance",
+        definition: "a subtle difference in meaning or opinion or attitude"
+    },
+    {
+        word: "objective",
+        definition: "the goal intended to be attained"
+    },
+    {
+        word: "obstinate",
+        definition: "marked by tenacious unwillingness to yield"
+    },
+    {
+        word: "paradigm",
+        definition: "a standard or typical example"
+    },
+    {
+        word: "paradox",
+        definition: "a statement that contradicts itself"
+    },
+    {
+        word: "partial",
+        definition: "being or affecting only a segment"
+    },
+    {
+        word: "pedantic",
+        definition: "marked by a narrow focus on or display of learning"
+    },
+    {
+        word: "periodical",
+        definition: "happening or recurring at regular intervals"
+    },
+    {
+        word: "pernicious",
+        definition: "exceedingly harmful"
+    },
+    {
+        word: "persuade",
+        definition: "cause somebody to adopt a certain position or belief"
+    },
+    {
+        word: "plausible",
+        definition: "apparently reasonable, valid, or truthful"
+    },
+    {
+        word: "precipitate",
+        definition: "bring about abruptly"
+    },
+    {
+        word: "preconceive",
+        definition: "conceive beforehand"
+    },
+    {
+        word: "presumption",
+        definition: "a premise that is taken for granted"
+    },
+    {
+        word: "primeval",
+        definition: "having existed from the beginning"
+    },
+    {
+        word: "primordial",
+        definition: "having existed from the beginning"
+    },
+    {
+        word: "proclivity",
+        definition: "a natural inclination"
+    },
+    {
+        word: "propaganda",
+        definition: "information that is spread to promote some cause"
+    },
+    {
+        word: "propensity",
+        definition: "a natural inclination"
+    },
+    {
+        word: "propose",
+        definition: "present for consideration, examination, or criticism"
+    },
+    {
+        word: "protocol",
+        definition: "forms of ceremony and etiquette observed by officials"
+    },
+    {
+        word: "proximity",
+        definition: "the property of being close together"
+    },
+    {
+        word: "proxy",
+        definition: "a person authorized to act for another"
+    },
+    {
+        word: "rational",
+        definition: "consistent with or based on or using reason"
+    },
+    {
+        word: "rationale",
+        definition: "an explanation of the fundamental reasons"
+    },
+    {
+        word: "reasoning",
+        definition: "thinking that is organized and logical"
+    },
+    {
+        word: "rebuke",
+        definition: "an act or expression of criticism and censure"
+    },
+    {
+        word: "recalcitrant",
+        definition: "stubbornly resistant to authority or control"
+    },
+    {
+        word: "receptive",
+        definition: "able to absorb liquid (not repellent)"
+    },
+    {
+        word: "reconcile",
+        definition: "come to terms"
+    },
+    {
+        word: "reiterate",
+        definition: "say, state, or perform again"
+    },
+    {
+        word: "replicate",
+        definition: "reproduce or make an exact copy of"
+    },
+    {
+        word: "reprimand",
+        definition: "an act or expression of criticism and censure"
+    },
+    {
+        word: "resilient",
+        definition: "recovering readily from adversity, depression, or the like"
+    },
+    {
+        word: "retain",
+        definition: "secure and keep for possible future use or application"
+    },
+    {
+        word: "retention",
+        definition: "the act of keeping something"
+    },
+    {
+        word: "rhetoric",
+        definition: "study of the technique for using language effectively"
+    },
+    {
+        word: "rhetorical",
+        definition: "relating to using language effectively"
+    },
+    {
+        word: "salient",
+        definition: "conspicuous, prominent, or important"
+    },
+    {
+        word: "sanction",
+        definition: "official permission or approval"
+    },
+    {
+        word: "savvy",
+        definition: "marked by practical hardheaded intelligence"
+    },
+    {
+        word: "self-effacing",
+        definition: "reluctant to draw attention to yourself"
+    },
+    {
+        word: "seminal",
+        definition: "influential and providing a basis for later development"
+    },
+    {
+        word: "sequential",
+        definition: "in regular succession without gaps"
+    },
+    {
+        word: "serial",
+        definition: "pertaining to or occurring in or producing a series"
+    },
+    {
+        word: "serial publication",
+        definition: "a periodical that appears at scheduled times"
+    },
+    {
+        word: "signify",
+        definition: "denote or connote"
+    },
+    {
+        word: "socioeconomic",
+        definition: "involving social as well as economic factors"
+    },
+    {
+        word: "speculative",
+        definition: "not based on fact or investigation"
+    },
+    {
+        word: "status quo",
+        definition: "the existing state of affairs"
+    },
+    {
+        word: "stimulus",
+        definition: "any information or event that acts to arouse action"
+    },
+    {
+        word: "subjective",
+        definition: "taking place within the mind and modified by individual bias"
+    },
+    {
+        word: "substantiate",
+        definition: "establish or strengthen as with new evidence or facts"
+    },
+    {
+        word: "subtlety",
+        definition: "the quality of being difficult to detect or analyze"
+    },
+    {
+        word: "subversive",
+        definition: "in opposition to an established system or government"
+    },
+    {
+        word: "sufficient",
+        definition: "of a quantity that can fulfill a need or requirement"
+    },
+    {
+        word: "sustain",
+        definition: "lengthen or extend in duration or space"
+    },
+    {
+        word: "sustainable",
+        definition: "capable of being prolonged"
+    },
+    {
+        word: "synopsis",
+        definition: "a sketchy summary of the main points of an argument"
+    },
+    {
+        word: "tactile",
+        definition: "of or relating to or proceeding from the sense of touch"
+    },
+    {
+        word: "tangible",
+        definition: "perceptible by the senses, especially the sense of touch"
+    },
+    {
+        word: "tenacious",
+        definition: "stubbornly unyielding"
+    },
+    {
+        word: "tenacity",
+        definition: "persistent determination"
+    },
+    {
+        word: "terminate",
+        definition: "bring to an end or halt"
+    },
+    {
+        word: "theory",
+        definition: "a belief that can guide behavior"
+    },
+    {
+        word: "unequivocal",
+        definition: "admitting of no doubt or misunderstanding"
+    },
+    {
+        word: "utopian",
+        definition: "pertaining to or resembling an ideally perfect state"
+    },
+    {
+        word: "verify",
+        definition: "confirm the truth of"
+    },
+    {
+        word: "vouch",
+        definition: "give personal assurance; guarantee"
+    }
 ];
 
 // -------------------------
