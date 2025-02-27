@@ -1143,7 +1143,7 @@ function showRandomTestSection() {
 // Check Answers & Mark Incorrect Responses
 // -------------------------
 function checkAnswers() {
-  let totalQuestions = fillAnswers.length + tfAnswers.length + matchAnswers.length;
+  let totalQuestions = fillAnswers.length | tfAnswers.length | matchAnswers.length;
   let correctCount = 0;
   
   // Check Fill-in-the-Blank
