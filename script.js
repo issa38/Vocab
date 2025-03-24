@@ -1029,7 +1029,7 @@ const vocabulary = [
       qDiv.classList.add("question");
       
       const label = document.createElement("label");
-      label.textContent = `Fill in the blank: "${item.definition}"`;
+      label.textContent = `"${item.definition}"`;
       label.setAttribute("for", `fib_${index}`);
       
       const input = document.createElement("input");
@@ -1070,7 +1070,7 @@ const vocabulary = [
       tfAnswers.push(isTrueStatement);
       
       const label = document.createElement("label");
-      label.textContent = `T/F – The word "${item.word}" means "${displayedDefinition}"?`;
+      label.textContent = `The word "${item.word}" means "${displayedDefinition}"?`;
       
       const optionsDiv = document.createElement("div");
       optionsDiv.classList.add("tf-options");
